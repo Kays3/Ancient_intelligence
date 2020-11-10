@@ -3,7 +3,7 @@ Jomon_intelligence
 Scripts for the Jomon intelligence genomic analysis
 ![alt text](https://features.japantimes.co.jp/wp-content/uploads/2019/12/JOMON_TRIBE_08-P1-web.jpg)
 
-^Paint it black: Jomon-inspired tattoos by Taku Oshima RYOICHI “KEROPPY” MAEDA. (R) thejapantimes^
+<sub><sup>Paint it black: Jomon-inspired tattoos by Taku Oshima RYOICHI “KEROPPY” MAEDA. (R) thejapantimes<sub><sup>
 
 # Contents
 
