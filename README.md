@@ -1,12 +1,13 @@
-# Jomon_intelligence
+Jomon_intelligence
+===================
 Scripts for the Jomon intelligence genomic analysis
-## Bash scripts
 
-`--bam (-b)`: bash scripts REQUIRED 1000 Genome data, F23 Genome data.
 
-## R scrits
+# Contents
 
-`--bam (-b)`: bash scripts REQUIRED 1000 Genome data, F23 Genome data.
+1. Polygenic score calculations
+2. Negative and positive alleles analysis in 1000 Genome Project populations
+3. Genetic relationship analysis based on PCA and SNPs assocaited with Jomon_intelligence
 
 
 
