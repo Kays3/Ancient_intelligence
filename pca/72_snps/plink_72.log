@@ -1,0 +1,37 @@
+PLINK v1.90b6.14 64-bit (7 Jan 2020)
+Options in effect:
+  --double-id
+  --file chimp_1k_j_nean_deni_72_snps
+  --make-bed
+  --out oranges
+  --pca
+  --set-missing-var-ids @:#
+
+Hostname: Beholder-Air.local
+Working directory: /Users/kaisar_dauyey/testdir/savage/plink_intelligence/chimp_ALL/neo_chimp
+Start time: Wed Aug 12 22:28:41 2020
+
+Random number seed: 1597238921
+8192 MB RAM detected; reserving 4096 MB for main workspace.
+Scanning .ped file... done.
+Warning: Variant 62 triallelic; setting rarest alleles missing.
+Performing single-pass .bed write (72 variants, 2508 people).
+--file: oranges-temporary.bed + oranges-temporary.bim + oranges-temporary.fam
+written.
+72 variants loaded from .bim file.
+2508 people (0 males, 0 females, 2508 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to oranges.nosex .
+Using up to 4 threads (change this with --threads).
+Before main variant filters, 2508 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.999967.
+72 variants and 2508 people pass filters and QC.
+Note: No phenotypes present.
+Relationship matrix calculation complete.
+--pca: Results saved to oranges.eigenval and oranges.eigenvec .
+--make-bed to oranges.bed + oranges.bim + oranges.fam ... done.
+
+End time: Wed Aug 12 22:28:43 2020
+
+#Original files named oranges changed into 1000G_jomon_nean_chimp
+#October 22, 2020

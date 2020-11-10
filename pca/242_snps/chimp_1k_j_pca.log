@@ -1,0 +1,30 @@
+PLINK v1.90b5 64-bit (14 Nov 2017)
+Options in effect:
+  --bfile chimp_1k_j
+  --double-id
+  --make-bed
+  --out chimp_1k_j_pca
+  --pca
+  --set-missing-var-ids @:#
+
+Hostname: izanami
+Working directory: /media/abba/kaisar/chimp
+Start time: Fri Jun 19 18:28:44 2020
+
+Random number seed: 1592558924
+257863 MB RAM detected; reserving 128931 MB for main workspace.
+242 variants loaded from .bim file.
+2506 people (0 males, 0 females, 2506 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to chimp_1k_j_pca.nosex .
+Using up to 55 threads (change this with --threads).
+Before main variant filters, 2506 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.991726.
+242 variants and 2506 people pass filters and QC.
+Note: No phenotypes present.
+Relationship matrix calculation complete.
+--pca: Results saved to chimp_1k_j_pca.eigenval and chimp_1k_j_pca.eigenvec .
+--make-bed to chimp_1k_j_pca.bed + chimp_1k_j_pca.bim + chimp_1k_j_pca.fam ...
+done.
+
+End time: Fri Jun 19 18:28:49 2020
