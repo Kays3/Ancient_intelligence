@@ -11,11 +11,11 @@ library("ggplot2")
 library(dplyr)
 
 
-setwd("/Users/kaisar_dauyey/testdir/savage/plink_intelligence/results")
+setwd("~/effect_correlation")
 
 #2d plot for neg and positive ASIA
 
-GP_all<-read.csv("~/testdir/savage/plink_intelligence/results/merged_1G.csv")
+GP_all<-read.csv("merged_1G.csv")
 
 GP2<-data.frame(rep('GP_all',length(GP_all$subject)),GP_all$positive_count,GP_all$negative_count)
 colnames(GP2)<-c("subject","positive_count","negative_count")
