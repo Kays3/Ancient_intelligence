@@ -1,24 +1,15 @@
-#PCA_nean_deni_jomon_1000GP_intell
-#Chimpanzee included as reference
-#neanderthal and denisovan variants alligne SNPS 72 used
-#October 22, 2020
-#Author kaisar dauyey
-
-
-
+#ALL snps used in P-link 
+#1000GP 
+#may 3, 2021
+#PCA visualization
+#Author kd
 rm(list = ls())
-library(dplyr)
-library(ggplot2)
-library(adegenet)
 library(tidyverse)
+
+
 library(plyr)
 library(readr)
-
-
-
-
-setwd("~/pca")
-
+setwd("~/Jomon_intelligence/pca")
 
 #load 1000gp phase 3 list of people
 phase3<- read.table("phase3_people.csv", 
@@ -26,12 +17,14 @@ phase3<- read.table("phase3_people.csv",
                     na.strings ="", stringsAsFactors= F, 
 )
 
-#merged PCA from PLINK analysis is available 1000G_jomon_nean_chimp
+#merged PCA
+#1000G_jomon_12k
 
 
-# read in data from Altai Neanderthal, Denisovan, Jomon, 1000 Genomes 
-pca <- read_table2("./72_snps/1000G_jomon_nean_chimp.eigenvec", col_names = FALSE)
-eigenval <- scan("./72_snps/1000G_jomon_nean_chimp.eigenval")
+# read in data
+pca <- read_table2("./1000G_Jomon_no_gomi_2.eigenvec", col_names = FALSE)
+eigenval <- scan("./1000G_Jomon_no_gomi_2.eigenval")
+
 
 
 # sort out the pca data
@@ -43,14 +36,11 @@ names(pca)[1] <- "ind"
 
 names(pca)[2:ncol(pca)] <- paste0("PC", 1:(ncol(pca)-1))
 pops<-data.frame(phase3$V2,phase3$V3,stringsAsFactors=FALSE)
-extra1<-c('AltaiNea', "AltaiNea")
-extra2<-c('Denisovan', "Denisovan")
-extra3<-c('Jomon', "Jomon")
-extra4<-c('taweh', "taweh")
+extra1<-c('Jomon', "Jomon")
 
 
+pops<-rbind(pops,extra1)
 
-pops<-rbind(pops,extra1,extra2,extra3,extra4)
 tail(pops)
 names(pops)<-c("ind","popa")
 pops<-data.frame(pops)
@@ -58,15 +48,10 @@ m1 <- merge(pca, pops, by.x = "ind",all.x = TRUE)
 pca<-m1
 
 tail(pca)
-which(pca$popa == "Jomon")
-#1659
-which(pca$popa == "AltaiNea")
-#1
-which(pca$popa == "Denisovan")
-#2
-which(pca$popa == "taweh")
-#2508
 
+#find Jomon
+which(pca$popa == "Jomon")
+#1657
 
 # sort out the individual species and pops
 # spp
@@ -99,18 +84,13 @@ spp[grep("PJL", pca$popa)] <- "South_Asia"
 spp[grep("BEB", pca$popa)] <- "South_Asia"
 spp[grep("STU", pca$popa)] <- "South_Asia"
 spp[grep("ITU", pca$popa)] <- "South_Asia"
-spp[grep("AltaiNea", pca$popa)] <- "AltaiNea"
-spp[grep("Denisovan", pca$popa)] <- "Denisovan"
 spp[grep("Jomon", pca$popa)] <- "Jomon"
-spp[grep("taweh", pca$popa)] <- "Chimpanzee"
-
-
+#spp[grep("taweh", pca$popa)] <- "Chimpanzee"
 
 # remake data.frame
 pca <- as_tibble(data.frame(pca, spp))
 tail(pca)
 pca$spp <- factor(pca$spp)
-
 
 # first convert to percentage variance explained
 pve <- data.frame(PC = 1:20, pve = eigenval/sum(eigenval)*100)
@@ -120,24 +100,27 @@ a + ylab("Percentage variance explained") + theme_light()
 ala<-a + ylab("Percentage variance explained") + theme_light()
 # calculate the cumulative sum of the percentage variance explained
 cumsum(pve$pve)
+#to safe
 #ggsave("pve4.png", ala, width=7, height=5, units="in", dpi=500)
 
-ka<- c(13+ nlevels(pca$spp))
+
+
+#build pca plot
+
+
+ka<- c(15+ nlevels(pca$spp))
 
 # plot pca
 b <- ggplot(pca, aes(PC1, PC2, col = spp, shape = spp )) +
-  geom_point(size = 2,alpha = 1/10) +
-  geom_point(data=pca[1659, ], size=5,alpha = 9/10) +
-  geom_point(data=pca[2508, ], size=5,alpha = 9/10) +
-  geom_point(data=pca[1, ], size=5,alpha = 9/10) +
-  geom_point(data=pca[2, ], size=5,alpha = 9/10,)
+  geom_point(size = 3,alpha = 1/10) +
+  geom_point(data=pca[1657, ], size=5,alpha = 9/10)
 
-b <- b + scale_x_reverse() + coord_equal()+ theme_classic() +scale_shape_manual(values=13:ka)
+b <- b + coord_equal()+ theme_classic() +scale_shape_manual(values=15:ka)
 b + xlab(paste0("PC1 (", signif(pve$pve[1], 3), "%)")) + ylab(paste0("PC2 (", signif(pve$pve[2], 3), "%)"))
 aca<-b + xlab(paste0("PC1 (", signif(pve$pve[1], 3), "%)")) + ylab(paste0("PC2 (", signif(pve$pve[2], 3), "%)"))
 
-ggsave("pca_nean_chimp_shapes_new_axes_fix.png", aca, width=7, height=5, units="in", dpi=500)
-getwd()
+#to safe edit comment
+#ggsave("12k_pca_1000G_jomon_NO_GOMI.png", aca, width=7, height=5, units="in", dpi=500)
 
 
 

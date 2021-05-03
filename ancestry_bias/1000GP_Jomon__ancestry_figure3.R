@@ -18,6 +18,7 @@ library(rstatix)
 
 
 #2d plot for negative and positive 1000 Genome people
+setwd("~/Jomon_intelligence")
 
 GP_all<-read.csv("true_intelligence_1000G_J_12k.csv")
 which(GP_all$subject=="Jomon")

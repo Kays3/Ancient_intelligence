@@ -1,40 +1,29 @@
-#PCA_nean_deni_jomon_1000GP_intell
-#Chimpanzee included as reference
-#Jomon and 1000 Genome subjects variants alligne SNPS 242 used
-#October 22, 2020
-#Author kaisar dauyey
-
-
-
+# load tidyverse package
+#add Jomon
+#12K snsps work  - NO GOMI
+#april 2 2021  - style for paper 12 k snps total updated
+# 12037
 rm(list = ls())
-library(dplyr)
-library(ggplot2)
-library(adegenet)
 library(tidyverse)
-library(plyr)
-library(readr)
 
-
-
-
-setwd("~/pca")
-
+setwd("~/testdir/savage/plink_intelligence/12k_update/12k_Jomon_intel_ALL/")
 
 library(plyr)
 library(readr)
 
 #load 1000gp phase 3 list of people
-phase3<- read.table("phase3_people.csv", 
+phase3<- read.table("~/testdir/savage/phase3_people.csv", 
                     sep = "\t" , header = F,
                     na.strings ="", stringsAsFactors= F, 
 )
 
-#merged PCA from PLINK analysis is available chimp_1k_j_pca
+#merged PCA
+#1000G_jomon_12k
 
 
 # read in data
-pca <- read_table2("./242_snps/chimp_1k_j_pca.eigenvec", col_names = FALSE)
-eigenval <- scan("./242_snps/chimp_1k_j_pca.eigenval")
+pca <- read_table2("./1000G_Jomon_no_gomi_2.eigenvec", col_names = FALSE)
+eigenval <- scan("./1000G_Jomon_no_gomi_2.eigenval")
 
 
 
@@ -48,9 +37,11 @@ names(pca)[1] <- "ind"
 names(pca)[2:ncol(pca)] <- paste0("PC", 1:(ncol(pca)-1))
 pops<-data.frame(phase3$V2,phase3$V3,stringsAsFactors=FALSE)
 extra1<-c('Jomon', "Jomon")
-extra2<-c('taweh', "taweh")
+#extra2<-c('taweh', "taweh")
 
-pops<-rbind(pops,extra1,extra2)
+#pops<-rbind(pops,extra1,extra2)
+pops<-rbind(pops,extra1)
+
 tail(pops)
 names(pops)<-c("ind","popa")
 pops<-data.frame(pops)
@@ -95,7 +86,7 @@ spp[grep("BEB", pca$popa)] <- "South_Asia"
 spp[grep("STU", pca$popa)] <- "South_Asia"
 spp[grep("ITU", pca$popa)] <- "South_Asia"
 spp[grep("Jomon", pca$popa)] <- "Jomon"
-spp[grep("taweh", pca$popa)] <- "Chimpanzee"
+#spp[grep("taweh", pca$popa)] <- "Chimpanzee"
 
 # remake data.frame
 pca <- as_tibble(data.frame(pca, spp))
@@ -118,20 +109,34 @@ cumsum(pve$pve)
 setwd("/Users/kaisar_dauyey/testdir/savage/plink_intelligence/results/")
 
 
-ka<- c(13+ nlevels(pca$spp))
+ka<- c(15+ nlevels(pca$spp))
 
 # plot pca
 b <- ggplot(pca, aes(PC1, PC2, col = spp, shape = spp )) +
   geom_point(size = 3,alpha = 1/10) +
-  geom_point(data=pca[1657, ], size=5,alpha = 9/10) +
-  geom_point(data=pca[2506, ], size=5,alpha = 9/10)
+  geom_point(data=pca[1657, ], size=5,alpha = 9/10)
 
-b <- b + coord_equal()+ theme_classic() +scale_shape_manual(values=13:ka)
+b <- b + coord_equal()+ theme_classic() +scale_shape_manual(values=15:ka)
 b + xlab(paste0("PC1 (", signif(pve$pve[1], 3), "%)")) + ylab(paste0("PC2 (", signif(pve$pve[2], 3), "%)"))
 aca<-b + xlab(paste0("PC1 (", signif(pve$pve[1], 3), "%)")) + ylab(paste0("PC2 (", signif(pve$pve[2], 3), "%)"))
 
-ggsave("pca_jomon_chimp_242_new.png", aca, width=7, height=5, units="in", dpi=500)
+ggsave("12k_pca_1000G_jomon_NO_GOMI.png", aca, width=7, height=5, units="in", dpi=500)
 
 getwd()
 
+
+# plot pca
+b <- ggplot(pca, aes(PC1, PC2, col = spp)) +
+  geom_point(size = 3,alpha = 1/10) +
+  geom_point(data=pca[1657, ], size=3,alpha = 9/10)
+
+b <- b + coord_equal()+ theme_classic()
+b + xlab(paste0("PC1 (", signif(pve$pve[1], 3), "%)")) + ylab(paste0("PC2 (", signif(pve$pve[2], 3), "%)"))
+aca<-b + xlab(paste0("PC1 (", signif(pve$pve[1], 3), "%)")) + ylab(paste0("PC2 (", signif(pve$pve[2], 3), "%)"))
+
+#ggsave("pca_12k_1000G_jomon_onelabel.png", aca, width=7, height=5, units="in", dpi=500)
+
+
+
+#enough for paper....
 
