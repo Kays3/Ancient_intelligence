@@ -8,8 +8,9 @@ Scripts for the Jomon intelligence genomic analysis
 # Contents
 
 1. Polygenic score calculations
-2. Negative and positive alleles analysis in 1000 Genome Project populations
-3. Genetic relationship analysis based on PCA and SNPs assocaited with Jomon_intelligence
+2. Ancestry bias in 1000 Genome Project populations polygenic prediction
+3. Genetic relationship analysis based on PCA and SNPs assocaited with intelligence
+4. Ancestral state of effective alleles demonstrated by ORTHEUS alignment
 
 ## License
 All files are licensed under the [MIT license](http://opensource.org/licenses/MIT). This project may not be copied, modified, or distributed except according to those terms.
