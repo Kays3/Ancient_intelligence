@@ -1,6 +1,6 @@
-Jomon_intelligence
+Ancient_intelligence
 ===================
-Scripts for the Jomon intelligence genomic analysis
+Scripts for the Ancient intelligence genomic analysis
 ![alt text](https://features.japantimes.co.jp/wp-content/uploads/2019/12/JOMON_TRIBE_08-P1-web.jpg)
 
 <sub><sup>Paint it black: Jomon-inspired tattoos by Taku Oshima RYOICHI “KEROPPY” MAEDA. (R) thejapantimes<sub><sup>
