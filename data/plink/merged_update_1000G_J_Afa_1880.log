@@ -1,0 +1,40 @@
+PLINK v1.90b6.14 64-bit (7 Jan 2020)
+Options in effect:
+  --extract snp_1880_all.txt
+  --file merged_update_1000G_J_Afa
+  --make-bed
+  --out merged_update_1000G_J_Afa_1880
+  --pca
+  --recode
+
+Hostname: Beholder-Air.local
+Working directory: /Users/kaisar_dauyey/testdir/savage/plink_intelligence/Afanasievo/mod_1000g_jom_afa
+Start time: Wed Jun  2 23:28:13 2021
+
+Random number seed: 1622644093
+8192 MB RAM detected; reserving 4096 MB for main workspace.
+Scanning .ped file... done.
+Performing single-pass .bed write (9128 variants, 2509 people).
+--file: merged_update_1000G_J_Afa_1880-temporary.bed +
+merged_update_1000G_J_Afa_1880-temporary.bim +
+merged_update_1000G_J_Afa_1880-temporary.fam written.
+9128 variants loaded from .bim file.
+2509 people (0 males, 0 females, 2509 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to merged_update_1000G_J_Afa_1880.nosex .
+--extract: 1402 variants remaining.
+Using up to 4 threads (change this with --threads).
+Before main variant filters, 2509 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.997862.
+1402 variants and 2509 people pass filters and QC.
+Note: No phenotypes present.
+Relationship matrix calculation complete.
+--pca: Results saved to merged_update_1000G_J_Afa_1880.eigenval and
+merged_update_1000G_J_Afa_1880.eigenvec .
+--make-bed to merged_update_1000G_J_Afa_1880.bed +
+merged_update_1000G_J_Afa_1880.bim + merged_update_1000G_J_Afa_1880.fam ...
+done.
+--recode ped to merged_update_1000G_J_Afa_1880.ped +
+merged_update_1000G_J_Afa_1880.map ... done.
+
+End time: Wed Jun  2 23:28:17 2021
