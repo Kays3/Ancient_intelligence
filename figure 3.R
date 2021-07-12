@@ -27,32 +27,32 @@ GP_all<-GP_all[-1657,]
 
 spp <- rep(NA, length(GP_all$subject))
 
-spp[grep("CHB", GP_all$subject)] <- "East_Asia"
-spp[grep("JPT", GP_all$subject)] <- "East_Asia"
-spp[grep("CHS", GP_all$subject)] <- "East_Asia"
-spp[grep("CDX", GP_all$subject)] <- "East_Asia"
-spp[grep("KHV", GP_all$subject)] <- "East_Asia"
-spp[grep("CEU", GP_all$subject)] <- "Europe"
-spp[grep("TSI", GP_all$subject)] <- "Europe"
-spp[grep("FIN", GP_all$subject)] <- "Europe"
-spp[grep("GBR", GP_all$subject)] <- "Europe"
-spp[grep("IBS", GP_all$subject)] <- "Europe"
-spp[grep("YRI", GP_all$subject)] <- "Africa"
-spp[grep("LWK", GP_all$subject)] <- "Africa"
-spp[grep("GWD", GP_all$subject)] <- "Africa"
-spp[grep("MSL", GP_all$subject)] <- "Africa"
-spp[grep("ESN", GP_all$subject)] <- "Africa"
-spp[grep("ASW", GP_all$subject)] <- "Africa"
-spp[grep("ACB", GP_all$subject)] <- "Africa"
-spp[grep("MXL", GP_all$subject)] <- "Ad_Mixed_American"
-spp[grep("PUR", GP_all$subject)] <- "Ad_Mixed_American"
-spp[grep("CLM", GP_all$subject)] <- "Ad_Mixed_American"
-spp[grep("PEL", GP_all$subject)] <- "Ad_Mixed_American"
-spp[grep("GIH", GP_all$subject)] <- "South_Asia"
-spp[grep("PJL", GP_all$subject)] <- "South_Asia"
-spp[grep("BEB", GP_all$subject)] <- "South_Asia"
-spp[grep("STU", GP_all$subject)] <- "South_Asia"
-spp[grep("ITU", GP_all$subject)] <- "South_Asia"
+spp[grep("CHB", GP_all$subject)] <- "EAS"
+spp[grep("JPT", GP_all$subject)] <- "EAS"
+spp[grep("CHS", GP_all$subject)] <- "EAS"
+spp[grep("CDX", GP_all$subject)] <- "EAS"
+spp[grep("KHV", GP_all$subject)] <- "EAS"
+spp[grep("CEU", GP_all$subject)] <- "EUR"
+spp[grep("TSI", GP_all$subject)] <- "EUR"
+spp[grep("FIN", GP_all$subject)] <- "EUR"
+spp[grep("GBR", GP_all$subject)] <- "EUR"
+spp[grep("IBS", GP_all$subject)] <- "EUR"
+spp[grep("YRI", GP_all$subject)] <- "AFR"
+spp[grep("LWK", GP_all$subject)] <- "AFR"
+spp[grep("GWD", GP_all$subject)] <- "AFR"
+spp[grep("MSL", GP_all$subject)] <- "AFR"
+spp[grep("ESN", GP_all$subject)] <- "AFR"
+spp[grep("ASW", GP_all$subject)] <- "AFR"
+spp[grep("ACB", GP_all$subject)] <- "AFR"
+spp[grep("MXL", GP_all$subject)] <- "AMR"
+spp[grep("PUR", GP_all$subject)] <- "AMR"
+spp[grep("CLM", GP_all$subject)] <- "AMR"
+spp[grep("PEL", GP_all$subject)] <- "AMR"
+spp[grep("GIH", GP_all$subject)] <- "SAS"
+spp[grep("PJL", GP_all$subject)] <- "SAS"
+spp[grep("BEB", GP_all$subject)] <- "SAS"
+spp[grep("STU", GP_all$subject)] <- "SAS"
+spp[grep("ITU", GP_all$subject)] <- "SAS"
 
 GP_all_2 <- as_tibble(data.frame(GP_all, spp))
 GP_all_2$spp <- factor(GP_all_2$spp)
@@ -83,14 +83,14 @@ y <- which(
 )
 method1 <- "anova" # one of "anova" or "kruskal.test"
 method2 <- "t.test" # one of "wilcox.test" or "t.test"
-my_comparisons <- list(c("Europe", "Africa"),
-                       c("Europe", "East_Asia"),
-                       c("Europe", "Ad_Mixed_American"),
-                       c("Europe", "South_Asia"),
-                       c("East_Asia", "Ad_Mixed_American"),
-                       c("Africa", "Ad_Mixed_American"),
-                       c("South_Asia", "Africa"),
-                       c("South_Asia", "East_Asia")
+my_comparisons <- list(c("EUR", "AFR"),
+                       c("EUR", "EAS"),
+                       c("EUR", "AMR"),
+                       c("EUR", "SAS"),
+                       c("EAS", "AMR"),
+                       c("AFR", "AMR"),
+                       c("SAS", "AFR"),
+                       c("SAS", "EAS")
                        ) # comparisons for post-hoc tests
 # Edit until here
 # Edit at your own risk
@@ -116,9 +116,12 @@ for (i in y) {
 #ggsave("1000GP_populations_12k_ANOVA.png", width = 30, height = 13, units = "cm",dpi = "retina")
 
 
+dat$spp <- factor(dat$spp, levels=c("EUR", "AFR", "AMR","EAS","SAS"))
+
+
 # Perform the test
 gugu<-compare_means(effect_sum ~ spp,  data = dat, p.adjust.method = "bonferroni",
-              ref.group = "Europe", method = "t.test")
+              ref.group = "EUR", method = "t.test")
 #write.csv(gugu,"t-test_1000g_racial.csv",row.names = TRUE)
 
 bara<-ggboxplot(dat,
@@ -126,12 +129,13 @@ bara<-ggboxplot(dat,
                    color = "spp",
                    legend = "none",
                    palette = "npg",
-                   add = "jitter")+
+                   add = "jitter"
+                )+
   rotate_x_text(angle = 45)+
   geom_hline(yintercept = mean(dat$effect_sum), linetype = 2)+ # Add horizontal line at base mean
   stat_compare_means(method = "anova", label.y = 300)+        # Add global annova p-value
   stat_compare_means(label = "p.signif", method = "t.test",
-                     ref.group = "Europe")+
+                     ref.group = "EUR")+
 xlab('Population') +
   ylab('PGS')
 
@@ -139,7 +143,7 @@ bara<- bara+ theme_cowplot(font_size = 7,line_size = 1)+ theme(legend.position =
 bara
 
 
-ggsave("~/Desktop/Figure3.pdf", bara, width=8.5, height=10, units="cm", dpi=300)
+ggsave("~/Desktop/Figure3_mod.pdf", bara, width=8.5, height=10, units="cm", dpi=300)
 
 #ggsave("1000GP_populations_12k_ANOVA_t-test_EU_base.png", width = 30, height = 13, units = "cm",dpi = "retina")
 
@@ -179,3 +183,6 @@ pairwise_comparisons(
   paired = FALSE,
   p.adjust.method = "bonferroni"
 )
+
+
+
