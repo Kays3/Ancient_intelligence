@@ -1,12 +1,15 @@
-#june 13, 2021
+#july 17, 2021
 #no normality done since we need to do data comparison between groups
-#12k racial
+#12k racial differences in PGS
+#modified
 #Author Kaisar Dauyey
 #uncomment to save plots
+
 
 rm(list = ls())
 library(dplyr)
 library(ggplot2)
+library(cowplot)
 library(tidyverse)
 library(ggpubr)
 library(rstatix)
@@ -15,7 +18,8 @@ library(ggsignif)
 
 
 
-setwd("data/")
+#setwd("data/")
+setwd("/Users/kaisar_dauyey/testdir/savage/plink_intelligence/scripts/paper/data")
 
 #2d plot for neg and positive ASIA
 
@@ -139,11 +143,11 @@ bara<-ggboxplot(dat,
 xlab('Population') +
   ylab('PGS')
 
-bara<- bara+ theme_cowplot(font_size = 7,line_size = 1)+ theme(legend.position = "none")
+bara<- bara + theme_cowplot(font_size = 7,line_size = 1)+ theme(legend.position = "none")
 bara
 
 
-ggsave("~/Desktop/Figure3_mod.pdf", bara, width=8.5, height=10, units="cm", dpi=300)
+ggsave("~/Desktop/Figure3_mod.pdf", bara, width=17.5, height=10, units="cm", dpi=300)
 
 #ggsave("1000GP_populations_12k_ANOVA_t-test_EU_base.png", width = 30, height = 13, units = "cm",dpi = "retina")
 
