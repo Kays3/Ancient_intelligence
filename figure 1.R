@@ -125,13 +125,13 @@ b<- ggplot(GP3, aes(x = effect_sum),show.legend = FALSE) +
     
   )+
   #Set x- and y-axes labels
-  xlab('Score') +
-  ylab('Density')
+  xlab('Polygenic ccore') +
+  ylab('Number of people')
 
 
 
 b
-# ggsave(filename = "~/Desktop/Figure1A_nolegend.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
+ ggsave(filename = "~/Desktop/Figure1A_nolegend2.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
 
 
 #9k work
@@ -237,8 +237,8 @@ b2<- ggplot(GP3_9k, aes(x = effect_sum),show.legend = FALSE) +
     
   )+
   #Set x- and y-axes labels
-  xlab('Score') +
-  ylab('Density')
+  xlab('Polygenic score') +
+  ylab('Number of People')
 
 b2
 
@@ -248,7 +248,7 @@ Figure1 <- plot_grid(b, b2, labels = "AUTO", ncol = 1, align = 'v')
 
 Figure1
 
-#ggsave("~/Desktop/Figure1_nolegend.pdf", Figure1, width=17.5, height=15, units="cm", dpi=300)
+ggsave("~/Desktop/Figure1_nolegend_comp.pdf", Figure1, width=17.5, height=15, units="cm", dpi=300)
 
 
 
@@ -305,8 +305,8 @@ b<- ggplot(GP3, aes(x = GP3$effect_sum),) +
   #Change the size of the icons/symbols in the legend
   guides(colour = guide_legend(override.aes = list(size = 1))) +
   #Set x- and y-axes labels
-  xlab('Score') +
-  ylab('Density') +
+  xlab('Polygenic ccore') +
+  ylab('Number of people') +
   
   
   scale_color_manual(name = "Polygenic score, 1402 SNPs", values = c("Funadomari Jomon" = "#4DBBD5FF",
@@ -316,7 +316,7 @@ b<- ggplot(GP3, aes(x = GP3$effect_sum),) +
                                                                      "Afanasievo Son2" = "#8491B499",
                                                                      "Mean 1000 Genomes Project" = "#7E6148FF"))
 b
-# ggsave(filename = "~/Desktop/Figure1A.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
+ ggsave(filename = "~/Desktop/Figure1A_color_1402.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
 
 
 
@@ -368,8 +368,8 @@ b2<- ggplot(GP3_9k, aes(x = GP3_9k$effect_sum),) +
   #Change the size of the icons/symbols in the legend
   guides(colour = guide_legend(override.aes = list(size = 1))) +
   #Set x- and y-axes labels
-  xlab('Score') +
-  ylab('Density') +
+  xlab('Polygenic score') +
+  ylab('Number of people') +
   
   
   scale_color_manual(name = "Polygenic score, 9128 SNPs", values = c("Funadomari Jomon" = "#4DBBD5FF",
@@ -380,3 +380,148 @@ b2<- ggplot(GP3_9k, aes(x = GP3_9k$effect_sum),) +
                                                                      "Mean 1000 Genomes Project" = "#7E6148FF"))
 
 b2
+ggsave(filename = "~/Desktop/Figure1A_color_9128.pdf", plot = b2, width = 17.5, height = 10, dpi = 300, units = "cm")
+
+
+Figure123 <- plot_grid(b, b2, labels = "AUTO", ncol = 1, align = 'v')
+
+Figure123
+
+ggsave("~/Desktop/Figure1_full_color.pdf", Figure123, width=17.5, height=15, units="cm", dpi=300)
+
+#Plot Absolute IQ values
+IQ <- seq(30, 170, by = .5)
+people <- as.data.frame(dnorm(IQ, mean = 100, sd = 15))
+#plot(IQ,people, main = "Number of people", col = "blue")
+
+#1402
+
+
+ab1<- ggplot(people, aes(x = IQ),) +
+  stat_function(
+    fun = dnorm,
+    args = with(people, c(mean = 100, sd = 15))
+  )+  
+  geom_vline(aes(xintercept=101,
+                 color="Funadomari Jomon"),     linetype="solid", size=1)+
+  geom_vline(aes(xintercept=89.5,
+                 color="Afanasievo Mother"),     linetype="solid", size=1)+
+  geom_vline(aes(xintercept=91.6,
+                 color="Afanasievo Son1"),     linetype="solid", size=1)+
+  geom_vline(aes(xintercept=93.9,
+                 color="Afanasievo Father"),     linetype="solid", size=1)+
+  geom_vline(aes(xintercept=91.4,
+                 color="Afanasievo Son2"),     linetype="solid", size=1)+
+  
+  geom_vline(aes(xintercept=100,
+                 color="Mean General Population"), linetype="solid", size=1)+
+  #Set the size of the plotting window
+  theme_pubclean()+
+  
+  theme(
+    legend.position = c(.95, .95),
+    legend.justification = c("right", "top"),
+    legend.box.just = "right",
+    legend.margin = margin(6, 6, 6, 6),
+    legend.background = element_rect(),
+    plot.title = element_text(angle = 0, size = 7, vjust = 1),
+    plot.subtitle = element_text(angle = 0, size = 7, vjust = 1),
+    plot.caption = element_text(angle = 0, size = 7, vjust = 1),
+    
+    axis.text.x = element_text(angle = 45, size = 7, hjust = 1.10),
+    axis.text.y = element_text(angle = 0, size = 7, vjust = 0.5),
+    axis.title = element_text(size = 7),
+    axis.title.x = element_text(size = 7),
+    axis.title.y = element_text(size = 7),
+    
+    #Legend
+    legend.key = element_blank(),       #removes the border
+    legend.key.size = unit(0.3, 'cm'),        #Sets overall area/size of the legend
+    legend.text = element_text(size = 5),   #Text size
+    title=element_text(size = 5),
+  )+
+  #Change the size of the icons/symbols in the legend
+  guides(colour = guide_legend(override.aes = list(size = 1))) +
+  #Set x- and y-axes labels
+  xlab('IQ score') +
+  ylab('Number of people') +
+  
+  
+  scale_color_manual(name = "IQ score based on 1402 SNPs", values = c("Funadomari Jomon" = "#4DBBD5FF",
+                                                                     "Afanasievo Mother" = "#E64B35FF",
+                                                                     "Afanasievo Father" = "#3C5488FF",
+                                                                     "Afanasievo Son1" = "#00A087FF",
+                                                                     "Afanasievo Son2" = "#8491B499",
+                                                                     "Mean General Population" = "#7E6148FF"))
+ab1
+ggsave(filename = "~/Desktop/Figure1A_color_1402_IQ.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
+
+
+#absolute 9k
+
+ab9k<- ggplot(people, aes(x = IQ),) +
+  stat_function(
+    fun = dnorm,
+    args = with(people, c(mean = 100, sd = 15))
+  )+  
+  geom_vline(aes(xintercept=95.46,
+                 color="Funadomari Jomon"),     linetype="solid", size=1)+
+  geom_vline(aes(xintercept=89.5,
+                 color="Afanasievo Mother"),     linetype="solid", size=1)+
+  geom_vline(aes(xintercept=92.32,
+                 color="Afanasievo Son1"),     linetype="solid", size=1)+
+  geom_vline(aes(xintercept=91.44,
+                 color="Afanasievo Father"),     linetype="solid", size=1)+
+  geom_vline(aes(xintercept=89.5,
+                 color="Afanasievo Son2"),     linetype="solid", size=1)+
+  
+  geom_vline(aes(xintercept=100,
+                 color="Mean General Population"), linetype="solid", size=1)+
+  #Set the size of the plotting window
+  theme_pubclean()+
+  
+  theme(
+    legend.position = c(.95, .95),
+    legend.justification = c("right", "top"),
+    legend.box.just = "right",
+    legend.margin = margin(6, 6, 6, 6),
+    legend.background = element_rect(),
+    plot.title = element_text(angle = 0, size = 7, vjust = 1),
+    plot.subtitle = element_text(angle = 0, size = 7, vjust = 1),
+    plot.caption = element_text(angle = 0, size = 7, vjust = 1),
+    
+    axis.text.x = element_text(angle = 45, size = 7, hjust = 1.10),
+    axis.text.y = element_text(angle = 0, size = 7, vjust = 0.5),
+    axis.title = element_text(size = 7),
+    axis.title.x = element_text(size = 7),
+    axis.title.y = element_text(size = 7),
+    
+    #Legend
+    legend.key = element_blank(),       #removes the border
+    legend.key.size = unit(0.3, 'cm'),        #Sets overall area/size of the legend
+    legend.text = element_text(size = 5),   #Text size
+    title=element_text(size = 5),
+  )+
+  #Change the size of the icons/symbols in the legend
+  guides(colour = guide_legend(override.aes = list(size = 1))) +
+  #Set x- and y-axes labels
+  xlab('IQ score') +
+  ylab('Number of people') +
+  
+  
+  scale_color_manual(name = "IQ score based on 9128 SNPs", values = c("Funadomari Jomon" = "#4DBBD5FF",
+                                                                      "Afanasievo Mother" = "#E64B35FF",
+                                                                      "Afanasievo Father" = "#3C5488FF",
+                                                                      "Afanasievo Son1" = "#00A087FF",
+                                                                      "Afanasievo Son2" = "#8491B499",
+                                                                      "Mean General Population" = "#7E6148FF"))
+ab9k
+
+
+
+Figure321 <- plot_grid(ab1, ab9k, labels = "AUTO", ncol = 1, align = 'v')
+
+Figure321
+
+ggsave("~/Desktop/Figure1_full_color_IQ.pdf", Figure321, width=17.5, height=15, units="cm", dpi=300)
+
