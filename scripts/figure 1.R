@@ -131,7 +131,7 @@ b<- ggplot(GP3, aes(x = effect_sum),show.legend = FALSE) +
 
 
 b
- ggsave(filename = "~/Desktop/Figure1A_nolegend2.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
+ #ggsave(filename = "~/Desktop/Figure1A_nolegend2.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
 
 
 #9k work
@@ -244,11 +244,11 @@ b2
 
 
 
-Figure1 <- plot_grid(b, b2, labels = "AUTO", ncol = 1, align = 'v')
+#Figure1 <- plot_grid(b, b2, labels = "AUTO", ncol = 1, align = 'v')
 
-Figure1
+#Figure1
 
-ggsave("~/Desktop/Figure1_nolegend_comp.pdf", Figure1, width=17.5, height=15, units="cm", dpi=300)
+#ggsave("~/Desktop/Figure1_nolegend_comp.pdf", Figure1, width=17.5, height=15, units="cm", dpi=300)
 
 
 
