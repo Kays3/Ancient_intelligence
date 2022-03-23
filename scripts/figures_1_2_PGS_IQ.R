@@ -20,7 +20,7 @@ library(rstatix)
 library(extrafont)
 
 
-setwd("/Ancient_intelligence/")
+setwd("~/Ancient_intelligence/")
 
 #Load proper dataset with PGS scores
 GP_nogomi_j<-read_csv("data/PGS_1000G_J_Afa_1402.csv")

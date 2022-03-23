@@ -1,5 +1,6 @@
-#1check ancestral state of snps reported by Savage by ORTHEUS package
-#May 3 , 2021
+#March 24, 2022
+#ancestral state analysis of snps reported by Savage et al GWAS summary
+#ORTHEUS package from ENSEMBLE required biomart
 #11 627 out 12 037 common in Jomon and 1000 Genome subjects were tested
 # skip to "plot with data calculated" to avoid derivation of ancestry
 
@@ -9,17 +10,27 @@ library(biomaRt)
 library(ggplot2)
 library(dplyr)
 library(viridis)
-setwd("/Users/kaisar_dauyey/testdir/savage/")
 library(janitor)
 
 
-#Load reference 
+setwd("~/Ancient_intelligence/")
+
+#Load reference and do Ortheus calculations 
+# takes about 30 minutes
+
+#otherwise load the calculated results 
+# uncomment below
+
+#data_ref<- read.csv("data/ancestral_state/12k_snp_alleles.csv")
+#data_anc<- read.csv("data/ancestral_state/snps_11627_ancestry_hg19.csv") 
+#data_test<- read.csv("data/ancestral_state/ancestry_12k.csv") 
+
 
 human_variation = useMart(biomart = "ENSEMBL_MART_SNP", dataset = "hsapiens_snp") 
 #GRCh37/hg19 as in Savage et al 2018
 #grch37 = useMart(biomart="ENSEMBL_MART_SNP", host="grch37.ensembl.org", path="/biomart/martservice", dataset="hsapiens_snp")
 #read data table with 12 037 snps in total
-data <- read.csv("12k_snp_alleles.csv")
+data <- read.csv("/data/12k_snp_alleles.csv")
 head(data)
 dim(data)
 snp_ids<-as.vector(data$SNP)
@@ -56,12 +67,12 @@ head(data4)
 empty_anc<-which(data4$allele_1 == '')  
 #extract to csv
 
-write.csv(data4, "snps_11627_ancestry_hg38.csv")
+#write.csv(data4, "snps_11627_ancestry_hg19.csv")
 
 #plot with data calculated
 
-data_ref<- read.csv("12k_snp_alleles.csv")
-data_anc<- read.csv("snps_11627_ancestry_hg38.csv")
+data_ref<- data
+data_anc<- data4
 head(data_ref)
 head(data_anc)
 
@@ -121,11 +132,17 @@ dim_desc(counts)
 counts
 
 
+#get Fisher's exact data ready and 2x2 contingency table
 
 allele <- c(rep("Absolute count" , 3) , rep("Positive" , 3) , rep("Negative" , 3) )
 data_test <- data.frame(counts,allele)
 head(data_test)
+testor <-rbind(c(data_test[5,2],data_test[4,2]),c(data_test[8,2],data_test[7,2]))
 
+
+fisher.test(testor)
+
+#report p-value
 #write ancestry statistics
 #write.csv(data_test,"ancestry_12k.csv")
 

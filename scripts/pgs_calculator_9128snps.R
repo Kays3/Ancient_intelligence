@@ -11,7 +11,7 @@ library(plyr)
 library(ggplot2)
 
 
-setwd("/Ancient_intelligence/")
+setwd("~/Ancient_intelligence/")
 
 #load 1000gp phase 3 list of people
 phase3<- read.table("data/phase3_people.csv", 
