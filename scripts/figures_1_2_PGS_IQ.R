@@ -1,11 +1,12 @@
-#june 27, 2021
-#1402 snps common 1000G and Jomon _Afanasievo
+#March 24, 2022
+#1402 snps and 9128 snps 
+#common 1000G and Jomon _Afanasievo
 #genotypes extracted
 #polygenic score calculated
 #EA proxy replication for all snps...
 #uncomment to save plots etc
-#paper editing plot
-#Author kaisar dauyey
+#manuscript plot figure 1 and figure 2
+#Author Kaisar Dauyey
 
 rm(list = ls())
 library(dplyr)
@@ -13,19 +14,17 @@ library("ggsci")
 library(gridExtra)
 library(ggplot2)
 library(cowplot)
-
 library(tidyverse)
 library(ggpubr)
 library(rstatix)
 library(extrafont)
-#font_import()
-#loadfonts()
 
-#setwd("/data/")
-setwd("/Users/kaisar_dauyey/testdir/savage/plink_intelligence/scripts/paper/data")
 
-#no gomi
-GP_nogomi_j<-read_csv("PGS_1000G_J_Afa_1402.csv")
+setwd("/Ancient_intelligence/")
+
+#Load proper dataset with PGS scores
+GP_nogomi_j<-read_csv("data/PGS_1000G_J_Afa_1402.csv")
+GP_9k<-read_csv("data/PGS_1000G_J_Afa_9k.csv")
 
 GP3<- GP_nogomi_j %>% select(subject,effect_sum) %>%
   group_by(subject)
@@ -137,7 +136,6 @@ b
 #9k work
 
 #data loading
-GP_9k<-read_csv("PGS_1000G_J_Afa_9k.csv")
 
 GP3_9k<- GP_9k %>% select(subject,effect_sum) %>%
   group_by(subject)
@@ -316,7 +314,7 @@ b<- ggplot(GP3, aes(x = GP3$effect_sum),) +
                                                                      "Afanasievo Son2" = "#8491B499",
                                                                      "Mean 1000 Genomes Project" = "#7E6148FF"))
 b
- ggsave(filename = "~/Desktop/Figure1A_color_1402.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
+#ggsave(filename = "~/Desktop/Figure1A_color_1402.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
 
 
 
@@ -380,21 +378,32 @@ b2<- ggplot(GP3_9k, aes(x = GP3_9k$effect_sum),) +
                                                                      "Mean 1000 Genomes Project" = "#7E6148FF"))
 
 b2
-ggsave(filename = "~/Desktop/Figure1A_color_9128.pdf", plot = b2, width = 17.5, height = 10, dpi = 300, units = "cm")
+#ggsave(filename = "~/Desktop/Figure1A_color_9128.pdf", plot = b2, width = 17.5, height = 10, dpi = 300, units = "cm")
 
 
 Figure123 <- plot_grid(b, b2, labels = "AUTO", ncol = 1, align = 'v')
 
 Figure123
 
-ggsave("~/Desktop/Figure1_full_color.pdf", Figure123, width=17.5, height=15, units="cm", dpi=300)
+#ggsave("~/Desktop/Figure1_full_color.pdf", Figure123, width=17.5, height=15, units="cm", dpi=300)
+
+
+
+
+
+#figure 2 >>>>>
 
 #Plot Absolute IQ values
 IQ <- seq(30, 170, by = .5)
 people <- as.data.frame(dnorm(IQ, mean = 100, sd = 15))
 #plot(IQ,people, main = "Number of people", col = "blue")
 
-#1402
+#1402 workflow. 
+#IQ values obtained from the open-access software
+#Pain, Oliver, et al.
+# "A tool for translating polygenic scores onto 
+# the absolute scale using summary statistics."
+# European Journal of Human Genetics (2022): 1-10.
 
 
 ab1<- ggplot(people, aes(x = IQ),) +
@@ -454,7 +463,7 @@ ab1<- ggplot(people, aes(x = IQ),) +
                                                                      "Afanasievo Son2" = "#8491B499",
                                                                      "Mean General Population" = "#7E6148FF"))
 ab1
-ggsave(filename = "~/Desktop/Figure1A_color_1402_IQ.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
+#ggsave(filename = "~/Desktop/Figure2_color_1402_IQ.pdf", plot = b, width = 17.5, height = 10, dpi = 300, units = "cm")
 
 
 #absolute 9k
@@ -523,5 +532,5 @@ Figure321 <- plot_grid(ab1, ab9k, labels = "AUTO", ncol = 1, align = 'v')
 
 Figure321
 
-ggsave("~/Desktop/Figure1_full_color_IQ.pdf", Figure321, width=17.5, height=15, units="cm", dpi=300)
+#ggsave("~/Desktop/Figure2_full_color_IQ.pdf", Figure321, width=17.5, height=15, units="cm", dpi=300)
 

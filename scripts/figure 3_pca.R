@@ -1,10 +1,11 @@
 #March 24, 2022
-#9k snps common 1000G and Jomon _Afanasievo
+#1402 snps and 9128 snps 
+#common 1000G and Jomon _Afanasievo
 #genotypes extracted
 #polygenic score calculated
 #EA proxy replication for all snps...
 #uncomment to save plots etc
-#Author kaisar dauyey
+#Author Kaisar Dauyey
 
 rm(list = ls())
 library(dplyr)
@@ -17,11 +18,10 @@ library(tidyverse)
 library(ggpubr)
 library(rstatix)
 
-#setwd("data/")
-setwd("/Users/kaisar_dauyey/testdir/savage/plink_intelligence/scripts/paper/data")
+setwd("/Ancient_intelligence/")
 
 #load 1000gp phase 3 list of people
-phase3<- read.table("phase3_people.csv", 
+phase3<- read.table("data/phase3_people.csv", 
                     sep = "\t" , header = F,
                     na.strings ="", stringsAsFactors= F, 
 )
@@ -33,12 +33,12 @@ phase3<- read.table("phase3_people.csv",
 
 
 # read in data 1402
-pca_1402<- read_table2("plink/merged_update_1000G_J_Afa_1880.eigenvec", col_names = FALSE)
-eigenval_1402 <- scan("plink/merged_update_1000G_J_Afa_1880.eigenval")
+pca_1402<- read_table2("data/plink/merged_update_1000G_J_Afa_1880.eigenvec", col_names = FALSE)
+eigenval_1402 <- scan("data/plink/merged_update_1000G_J_Afa_1880.eigenval")
 
 # read in data 9k
-pca_9k<- read_table2("plink/merged_update_1000G_J_Afa.eigenvec", col_names = FALSE)
-eigenval_9k <- scan("plink/merged_update_1000G_J_Afa.eigenval")
+pca_9k<- read_table2("data/plink/merged_update_1000G_J_Afa.eigenvec", col_names = FALSE)
+eigenval_9k <- scan("data/plink/merged_update_1000G_J_Afa.eigenval")
 
 
 
@@ -137,6 +137,8 @@ cumsum(pve_1402$pve)
 #new pca
 
 
+
+# 9128 snps 
 
 #1000G_jomon_ 9k_AFA
 # sort out the pca data
@@ -283,8 +285,8 @@ b_9k <- b_9k + coord_equal()+ theme_cowplot(font_size = 7, line_size = 1)+
 b_9k 
 aca_9k<-b_9k
 
-Figure2 <- plot_grid(aca_1402, aca_9k, labels = "AUTO", ncol = 1, align = 'v')
+Figure3 <- plot_grid(aca_1402, aca_9k, labels = "AUTO", ncol = 1, align = 'v')
 
-Figure2
+Figure3
 
-#ggsave("~/Desktop/Figure2.pdf", Figure2, width=8.5, height=13, units="cm", dpi=300)
+#ggsave("~/Desktop/Figure3.pdf", Figure3, width=8.5, height=13, units="cm", dpi=300)
