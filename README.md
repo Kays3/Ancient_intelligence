@@ -1,6 +1,10 @@
-Ancient_intelligence
+Genetic component of intelligence in ancient people
 ===================
-Scripts for the Ancient intelligence genomic analysis
+Repository for the manuscript tittled "Inferring intelligence of ancient people based on modern genomic studies"
+===================
+Authors:
+Kaisar Dauyey and Naruya Saitou
+
 ![alt text](https://features.japantimes.co.jp/wp-content/uploads/2019/12/JOMON_TRIBE_08-P1-web.jpg)
 
 <sub><sup>Paint it black: Jomon-inspired tattoos by Taku Oshima RYOICHI “KEROPPY” MAEDA. (R) thejapantimes<sub><sup>
@@ -8,7 +12,7 @@ Scripts for the Ancient intelligence genomic analysis
 # Contents
 
 1. Polygenic score calculations
-2. Ancestry bias in 1000 Genome Project populations polygenic prediction
+2. Absolute score derivation of IQ based on polygenic predictions
 3. Genetic relationship analysis based on PCA and SNPs assocaited with intelligence
 4. Ancestral state of effective alleles demonstrated by ORTHEUS alignment
 
