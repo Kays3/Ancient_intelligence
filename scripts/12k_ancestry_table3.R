@@ -1,8 +1,8 @@
 #March 24, 2022
 #ancestral state analysis of snps reported by Savage et al GWAS summary
-#ORTHEUS package from ENSEMBLE required biomart
+#ORTHEUS package from ENSEMBLE required biomart confirmed 11 627 out 12 037 SNPs 
 #11 627 out 12 037 common in Jomon and 1000 Genome subjects were tested
-# skip to "plot with data calculated" to avoid derivation of ancestry
+#skip to "plot with data calculated" to avoid derivation of ancestry
 
 #Author kaisar dauyey
 
