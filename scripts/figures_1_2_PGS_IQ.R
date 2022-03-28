@@ -1,9 +1,8 @@
-#March 24, 2022
+#March 29, 2022
 #1402 snps and 9128 snps 
-#common 1000G and Jomon _Afanasievo
+#shared 1000G and Jomon _Afanasievo
 #genotypes extracted
 #polygenic score calculated
-#EA proxy replication for all snps...
 #uncomment to save plots etc
 #manuscript plot figure 1 and figure 2
 #Author Kaisar Dauyey
