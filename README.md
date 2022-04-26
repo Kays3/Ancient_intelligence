@@ -1,6 +1,7 @@
 Genetic component of intelligence in ancient people
 ===================
-Repository contributing to a manuscript "Inferring intelligence of ancient people based on modern genomic studies" (under review)
+Repository contributing to a manuscript "Inferring intelligence of ancient people based on modern genomic studies"
+ (accepted for publication in the Journal of Human Genetics)
 -------------------
 Authors:
 Kaisar Dauyey and Naruya Saitou
