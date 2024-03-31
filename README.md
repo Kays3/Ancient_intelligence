@@ -1,6 +1,6 @@
 Genetic component of intelligence in ancient people
 ===================
-Repository contributing to a manuscript "Inferring intelligence of ancient people based on modern genomic studies"
+Repository contributing to a manuscript "[Inferring intelligence of ancient people based on modern genomic studies](https://www.nature.com/articles/s10038-022-01039-8)"
  (accepted for publication in the Journal of Human Genetics, 2022)
 -------------------
 Authors:
