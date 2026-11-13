@@ -10,6 +10,10 @@ Kaisar Dauyey and Naruya Saitou
 
 *Final Jōmon dogū figurine (The Metropolitan Museum of Art, accession 1975.268.191, CC0) beside the PCA of 1,402 intelligence-associated SNPs from the paper (Fig. 3A). Collage reused from [Kaisar's research website](https://kays3.github.io/).*
 
+![A cord-marked Jomon vessel with a DNA helix rising into a sky of clustered stars](assets/impression.svg)
+
+*Artistic impression, AI-drawn as an SVG that opens and edits in Inkscape. It is an illustration and reports no result. More on [Kaisar's research website](https://kays3.github.io/).*
+
 # Contents
 
 1. Polygenic score calculations
