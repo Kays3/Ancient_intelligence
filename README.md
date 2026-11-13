@@ -23,3 +23,7 @@ Kaisar Dauyey and Naruya Saitou
 
 ## License
 All files are licensed under the [MIT license](http://opensource.org/licenses/MIT). This project may not be copied, modified, or distributed except according to those terms.
+
+## Research website
+
+[Read the population-genomics overview](https://kays3.github.io/research/#polygenic-risk) and [browse related research](https://kays3.github.io/). The website provides an accessible summary; the scripts and study materials remain in this repository.
