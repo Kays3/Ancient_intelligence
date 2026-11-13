@@ -6,9 +6,9 @@ Repository contributing to a manuscript "[Inferring intelligence of ancient peop
 Authors:
 Kaisar Dauyey and Naruya Saitou
 
-![alt text](https://features.japantimes.co.jp/wp-content/uploads/2019/12/JOMON_TRIBE_08-P1-web.jpg)
+![A Final Jomon dogu figurine beside a PCA plot of intelligence-associated SNPs](assets/banner.webp)
 
-<sub><sup>Paint it black: Jomon-inspired tattoos by Taku Oshima RYOICHI “KEROPPY” MAEDA. (R) thejapantimes<sub><sup>
+*Final Jōmon dogū figurine (The Metropolitan Museum of Art, accession 1975.268.191, CC0) beside the PCA of 1,402 intelligence-associated SNPs from the paper (Fig. 3A). Collage reused from [Kaisar's research website](https://kays3.github.io/).*
 
 # Contents
 
